@@ -321,3 +321,18 @@ t.test(total_deaths_per_million ~ SixtyFive_Median_Median ,
        alt = "two.sided",
        conf = 0.95)
 
+### Bar Chart ###
+
+#Total cases per million
+
+total_cases_per_mil <- ggplot(data = dataset_omit, aes(x = total_cases_per_million, label = location)) +
+  geom_histogram(binwidth = 100) +
+  labs(x = "Countries",
+       y = "Total Cases Per Million",
+       title = "Countries by Total Cases per Million"
+       ) +
+  theme_minimal()
+  
+
+total_cases_per_mil
+
