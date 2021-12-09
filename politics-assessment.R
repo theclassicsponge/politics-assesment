@@ -117,11 +117,7 @@ sd(dataset_omit$total_cases)
 
 
 
-gg_total_cases_per_mil <- ggplot(data = dataset_omit, 
-                                      mapping = aes(x = total_deaths_per_million, y = total_cases_per_million )) +   
-  geom_text(size = 2, 
-            colour = "red", 
-            aes(label = location))
+
 
 gg_total_cases_per_mil + geom_point()
 
@@ -138,6 +134,16 @@ gg_gdp_per_cap <- ggplot(data = dataset_omit,
 
 gg_gdp_per_cap + geom_point()
 
+#Total Deaths Per Million GDP
+
+gg_gdp_deaths_per_cap <- ggplot(data = dataset_omit, 
+                         mapping = aes(x = total_deaths, y = gdp_per_capita)) +
+  geom_text(size = 2, 
+            colour = "red", 
+            aes(label = location))
+
+gg_gdp_deaths_per_cap + geom_point()
+
 
 
 #Female HoG
@@ -149,6 +155,16 @@ geom_text(size = 2,
           aes(label = location))
 
 gg_female_HoG + facet_wrap(~ female_HoG)
+
+#Female HoG Deaths
+gg_female_HoG_deaths <- ggplot(data = dataset_omit, aes(x = total_deaths)) +
+  geom_histogram(bins = 30)
+
+geom_text(size = 2, 
+          colour = "red", 
+          aes(label = location))
+
+gg_female_HoG_deaths + facet_wrap(~ female_HoG)
 
 #Population over 65
 
@@ -181,7 +197,15 @@ gg_vdem <- ggplot(data = dataset_omit,
 gg_vdem + geom_point()
 
 
+#VDEM Deaths
 
+gg_vdem <- ggplot(data = dataset_omit, 
+                  mapping = aes(x = vdem_polyarchy , y = total_deaths)) +   
+  geom_text(size = 2, 
+            colour = "red", 
+            aes(label = location))
+
+gg_vdem + geom_point()
 
 #Extreme poverty
 
@@ -325,10 +349,10 @@ t.test(total_deaths_per_million ~ SixtyFive_Median_Median ,
 
 #Total cases per million
 
-total_cases_per_mil <- ggplot(data = dataset_omit, aes(x = total_cases_per_million, label = location)) +
+total_cases_per_mil <- ggplot(data = dataset_omit, aes(x = location, label = location)) +
   geom_histogram(binwidth = 100) +
   labs(x = "Countries",
-       y = "Total Cases Per Million",
+       y = "location",
        title = "Countries by Total Cases per Million"
        ) +
   theme_minimal()

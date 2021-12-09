@@ -1,0 +1,77 @@
+---
+title: 'Analysis of the Social and Political Factors for Success/Failure in Tackling
+  the Covid-19 Pandemic  '
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+What factors lead to the best or worst responses early on in the Covid–19 pandemic? was it wealth, who leads the country? Maybe how the country is run? Maybe it's something out of their control? I have been given four hypotheses to test, they are:
+
+* Richer Countries do better than Poorer countries. 
+
+* Countries led by women are more successful than those led by men. 
+
+* The success in dealing with the pandemic is related to the proportion of older people living in the country. 2
+
+* Democratic countries are more successful than authoritarian countries. 
+
+to test and using data on an assortment of countries from around the world, I will test them and see how these factors affect their death toll per million inhabitants. The theories are as follows:
+
+
+
+To test these theories, I have analysed2 data from various countries around the world and used a series of measurements and characteristics to determine what effects the a country's success at tackling the COVID-19 pandemic. 
+
+## Justification:
+First, I must justify my initial hypothesis, what I believe the data will show me using prior research from sources, like the news, academic papers etc. (to prove that I didn't pull these statements out of thin air!). 
+
+1. Richer Countries do better than Poorer countries.
+
+A country with a higher GDP per capita and lower extreme poverty levels would be more likely to have a robust healthcare system and greater investment into pandemic preparation.
+
+
+
+2. Countries led by women are more successful than those led by men. 
+
+In the early days of the pandemic, the media highlighted the success of New Zealand Prime Minister Jacinda Ardern and other female led nations around the world at having lower death rates compared to their male counterparts.
+
+* https://www.theguardian.com/world/2020/aug/18/female-led-countries-handled-coronavirus-better-study-jacinda-ardern-angela-merkel
+
+* https://www.ft.com/content/6b597385-ba51-413a-96bd-cb75d3446718
+
+* https://www.forbes.com/sites/avivahwittenbergcox/2020/04/13/what-do-countries-with-the-best-coronavirus-reponses-have-in-common-women-leaders/
+
+3. The success in dealing with the pandemic is related to the proportion of older people living in the country. 
+
+The death rate of COVID-19 infected individuals is much higher in those aged above 60. In nations with a higher older population such as Japan, the government would be prepared to take stronger measures to protect the most vulnerable as they could expect more deaths in their population.
+
+4.Democratic countries are more successful than authoritarian countries. 
+
+## The Results:
+
+#### Richer Countries do better than Poorer countries.
+
+#### Countries led by women are more successful than those led by men.  
+
+#### The success in dealing with the pandemic is related to the proportion of older people living in the country.
+
+#### Democratic countries are more successful than authoritarian countries.
+
+
+## Conclusion:
+
+## Code:
+
+```{r}
+### Where the code will go###
+
+```
+
