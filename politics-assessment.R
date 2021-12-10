@@ -77,6 +77,7 @@ sd(dataset_omit$gdp_per_capita)
 fem_hog_dev <- prop.table(table(dataset_omit$female_HoG))
 fem_hog_dev
 
+
 #aged 65 plus 
 sd(dataset_omit$aged_65_older)
 
@@ -319,7 +320,7 @@ aged65_dist <- ggplot(data = sixtyFive_Median, aes(total_deaths_per_million, gro
 
 aged65_dist
 
-###TWO SAMPLE T-tests
+###TWO SAMPLE T-TESTS####
 
 #gdp per capita 
 
