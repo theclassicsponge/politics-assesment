@@ -143,8 +143,12 @@ gg_gdp_deaths_per_cap <- ggplot(data = dataset_omit,
             colour = "red", 
             aes(label = location))
 
-gg_gdp_deaths_per_cap + geom_point()
+gg_gdp_deaths_per_cap + geom_point() 
 
+# univariate plot
+gg_gdp <- ggplot(dataset_omit, aes(x = gdp_per_capita)) #  label = location, colour = "red") + geom_text(size = 2)) 
+gg_gdp + geom_histogram()                                                         
+                     
 
 
 #Female HoG

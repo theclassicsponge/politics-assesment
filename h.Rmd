@@ -71,6 +71,9 @@ V-Dem Polyarchy                                     Continuous                  
 
 
 #### Richer Countries do better than Poorer countries.
+
+Null Hypothesis = The GDP per capita of a country does not have an effect on the total covid deaths per million.
+
 ```{r, echo=FALSE}
 gg_gdp_per_cap <- ggplot(data = dataset_omit, 
                          mapping = aes(x = gdp_per_capita  , y = total_deaths_per_million)) +
@@ -128,6 +131,8 @@ t.test(total_deaths_per_million ~ gdp_oneOrZero_Median ,
 
 #### Countries led by women are more successful than those led by men.  
 
+Null Hypothesis = The gender of a nations leader does not have an effect on the total covid deaths per million
+
 ```{r, echo=FALSE}
 
 #Female HoG Deaths
@@ -144,6 +149,9 @@ gg_female_HoG_deaths + facet_wrap(~ female_HoG)
 
 
 #### The success in dealing with the pandemic is related to the proportion of older people living in the country.
+
+Null Hypothesis = The proportion of people over the age of 65 does not have an effect on the total covid deaths per million
+
 
 ```{r, echo=FALSE}
 #Population over 65
@@ -194,6 +202,8 @@ t.test(total_deaths_per_million ~ SixtyFive_Median_Median ,
 ```
 
 #### Democratic countries are more successful than authoritarian countries.
+
+Null Hypothesis = The level of democracy in a country does not have an effect on the total coivd deaths per million
 
 ```{r, echo=FALSE}
 gg_vdem <- ggplot(data = dataset_omit, 
@@ -247,5 +257,7 @@ t.test(total_deaths_per_million ~ Vdem_Median_Median  ,
 
 ```{r eval=TRUE}
 # This is where the finished code will go. 
+# https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8301493/
+# https://www.frontiersin.org/articles/10.3389/fpubh.2021.613484/full 
 
 ```
