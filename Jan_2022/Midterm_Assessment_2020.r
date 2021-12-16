@@ -16,6 +16,8 @@
 
 #### INSTALL LIBRARYS: ####
 library("ggplot2")
+library(tidyverse)
+library(tidyr)
 #### INPUT DATASET: ####
 dataset <- read.csv("https://raw.githubusercontent.com/QMUL-SPIR/Public_files/master/datasets/Covid2020.csv")
 dataset_omit <- read.csv("https://raw.githubusercontent.com/QMUL-SPIR/Public_files/master/datasets/Covid2020.csv")
@@ -80,6 +82,8 @@ vdem
 sd(dataset_omit$vdem_polyarchy)
 
 #### A TABLE WITH ALL THE VARIBALE AND MEASURE OF CENTRAL TENDENCY: ####
+
+# This will be added in Rmd
 
 #### A RELEVENT PLOT FOR EVERY VARIABLE ####
 
