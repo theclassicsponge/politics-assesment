@@ -253,15 +253,21 @@ gg_median_age + geom_point()
 ##TEST##
 
 #GDP per capita binary
+median_gdp_p_c <- data.frame(gdp = gdp_per_capita)
+
 median_gdp_p_c <- median(dataset_omit$gdp_per_capita)
 
 gdp_oneOrZero <- dataset_omit %>%
   mutate(
     gdp_oneOrZero_Median =
       factor(case_when(
-        gdp_per_capita > median_gdp_p_c ~ 1,
-        gdp_per_capita<= median_gdp_p_c ~ 0)))
+        gdp > median_gdp_p_c ~ 1,
+        gdp <= median_gdp_p_c ~ 0)))
 
+
+table(gdp_oneOrZero$median_gdp_p_c)
+
+#Dont change
 #vdem polyarchy binary 
 median_vdemBinary <- median(dataset_omit$vdem_polyarchy)
 
@@ -270,7 +276,7 @@ Vdem_Median <- dataset_omit %>%
     Vdem_Median_Median =
       factor(case_when(
         vdem_polyarchy > median_vdemBinary ~ 1,
-        vdem_polyarchy<= median_vdemBinary ~ 0)))
+        vdem_polyarchy <= median_vdemBinary ~ 0)))
 
 #aged 65 plus binary
 median_sixtyFiveBinary <- median(dataset_omit$aged_65_older)
@@ -280,7 +286,7 @@ sixtyFive_Median <- dataset_omit %>%
     SixtyFive_Median_Median =
       factor(case_when(
         aged_65_older > median_sixtyFiveBinary ~ 1,
-        aged_65_older<= median_sixtyFiveBinary ~ 0)))
+        aged_65_older <= median_sixtyFiveBinary ~ 0)))
 
 ###CONDITIONAL DISTRBUTION PLOT####
 

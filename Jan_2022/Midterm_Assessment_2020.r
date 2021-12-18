@@ -113,11 +113,35 @@ gg_aged_65_plus + geom_histogram()
 gg_vdem <- ggplot(data = dataset_omit, aes(x = vdem_polyarchy))
 gg_vdem + geom_histogram()
 
-#### RECODES FOR VARIBELS OF INTREST ####
+#### RECODES FOR VARIBELS OF INTREST (BINARY)####
+
+# calculate median population density
+med_gdp <- median(dataset_omit$gdp_per_capita)
+
+# create new variable using case_when()
+dataset_omit <- dataset_omit %>% # pipe the dataset
+  mutate( # create new variable
+    gdp_var = # name the new variable
+      factor(case_when(
+        gdp_per_capita > med_gdp ~ 1,
+        gdp_per_capita <= med_gdp ~ 0)))
+
 
 
 #### RELATIONSHP BETWEEN TOTAL COVID 19 DEATHS AND THE RELEVENT VARIABLES ####
 
-  #### CONDISIONAL DISTRIBUTION PLOTS ####
+  #### CONDITIONAL DISTRIBUTION PLOTS ####
+
+gdp_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, group = gdp_var)) + 
+  geom_density(aes(colour = gdp_var)) +
+  labs(x = "Total Deaths Per Million", # clearer x axis label
+       y = "Density", # clearer y axis label
+       title = "Distribution of Deaths per Million Conditional on GDP per Capita") + # title 
+  scale_color_discrete(name = "GDP Per Capita", # change legend title
+                       labels = c("Below or equal median", # change legend labels
+                                  "Above median")) + 
+  theme_minimal()
+
+gdp_dist
 
   #### TWO SAMPLE T-TESTS ####
