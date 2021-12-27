@@ -30,6 +30,14 @@ head(dataset)
 
 ## Introduction
 
+The Coronavious pandemic has led to social and economic disruption on an unprecidented scale with every country in the world being affected in some way. COVID-19 has dominated business, trade, politics and the media, leading many to question exactly what factors of a nation's governence have lead to fewer COVD-19 deaths.  Some of the most prevelent beleifes sorounding this include: 
+  
+  * Richer countries better or worse at handling the pandemic than poorer countries.
+  * Countries led by women more successful than those led by men
+  * The success in dealing with the pandemic related the proportion of older people living in a country
+  * Democratic countries more successful at dealting with the pandemic than autoritrian ones?
+
+By using data from countries around the world, namely relating to; wealth, age, the gender of a nation's leader and the strength of democratic institutions as well as statisitcal analysis of these varibles, I am able to further understand the effect these vairbles have on the total deaths per million in a country. This will help me in determining the validity of these hypothesis or if they have no effect on the level of COVID-19 deaths at all (This is known as the null hypothesis).    
 
 
 
@@ -39,7 +47,11 @@ head(dataset)
 
 ## The Results:
 
+To examine this 
+
 ## Table
+
+Understanding the 
 
 Variable                                            Name of the Relevant MCT    Value of the MCT                    Name of the Relevant MD                   Value of the MD 
 ---------                                           -------------------------   -----------------                   ------------------------                  ----------------
@@ -48,22 +60,23 @@ GDP Per Capita                                      Continuous                  
 Female Head of Government                           Nominal                     0 (Male) = 107  1 (Female) = 9      proportion in each category               0 (Male) = 0.92  1 (Female) = 0.08
 V-Dem Polyarchy                                     Continuous                  0.56                                variance and/or standard deviation        0.22
 
+*Table 1. The Name of the Relevant Measure of Central Tendency (MCT) and Measure of Dispersion with their values*
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 1.",  echo=FALSE}
 # Total Deaths Per Million:
 gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million)) +
   ggtitle("The Total Number of COVID-19 Related Deaths per Million Inhabitants")
 gg_total_deaths_per_mil + geom_histogram(binwidth = 10)
 ```
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 2.", echo=FALSE}
 # GDP Per Capita:
 gg_gdp_per_cap <- ggplot(dataset_omit, aes(x = gdp_per_capita)) +
   ggtitle("Gross Domestic Product (GDP) per capita")
 gg_gdp_per_cap + geom_histogram()
 ```
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 3.", echo=FALSE}
 # Female Head of Government:
 gg_female_HoG_deaths <- ggplot(data = dataset_omit, aes(x = female_HoG)) +
   geom_histogram(binwidth = 20) + 
@@ -76,21 +89,21 @@ geom_text(size = 2,
 gg_female_HoG_deaths + facet_wrap(~ female_HoG)
 ```
 
-```{r, fig.height=8, fig.width=13, echo=FALSE}
+```{r, fig.height=8, fig.width=13, fig.cap="\\label{fig:figs}Figure 4.", echo=FALSE}
 # VDEM Polyarchy:
 gg_vdem <- ggplot(data = dataset_omit, aes(x = vdem_polyarchy)) + 
   ggtitle("Level of Liberal Democracy, Negative Values Represent Lower Levels of Democracy, Higher Values Represent Higher Levels")
 gg_vdem + geom_histogram()
 ```
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 5.", echo=FALSE}
 # Aged 65 or Older:
 gg_aged_65_plus <- ggplot(data = dataset_omit, aes(x = aged_65_older)) + 
   ggtitle("Estimated Share of the Population Aged 65 and Over")
 gg_aged_65_plus + geom_histogram()
 ```
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 6.", echo=FALSE}
 #### RECODES FOR VARIBELS OF INTREST (BINARY)####
 
 # calculate median GDP Per Capita
@@ -128,7 +141,7 @@ dataset_omit <- dataset_omit %>% # pipe the dataset
 
 ```
 #### Richer Countries do better than Poorer countries.
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 7.", echo=FALSE}
 gdp_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, group = gdp_var)) + 
   geom_density(aes(colour = gdp_var)) +
   labs(x = "Total Deaths Per Million", # clearer x axis label
@@ -146,7 +159,7 @@ gdp_dist
 #### Countries led by women are more successful than those led by men.  
 
 #### The success in dealing with the pandemic is related to the proportion of older people living in the country.
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 8.", echo=FALSE}
 # Distribution of Deaths per Million Conditional on median 65 or Older
 
 sixtyfive_dist <- ggplot(data = dataset_omit, aes(aged_65_older, group = sixty_five_var)) + 
@@ -164,7 +177,7 @@ sixtyfive_dist
 
 #### Democratic countries are more successful than authoritarian countries.
 
-```{r, fig.height=8, fig.width=10, echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 9.", echo=FALSE}
 vdem_dist <- ggplot(data = dataset_omit, aes(vdem_polyarchy, group = vdem_var)) + 
   geom_density(aes(colour = vdem_var)) +
   labs(x = "Total Deaths Per Million", # clearer x axis label
