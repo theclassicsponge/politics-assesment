@@ -32,16 +32,32 @@ head(dataset)
 
 The Coronavious pandemic has led to social and economic disruption on an unprecidented scale with every country in the world being affected in some way. COVID-19 has dominated business, trade, politics and the media, leading many to question exactly what factors of a nation's governence have lead to fewer COVD-19 deaths.  Some of the most prevelent beleifes sorounding this include: 
   
-  * Richer countries better or worse at handling the pandemic than poorer countries.
+  * Richer countries do better or worse at handling the pandemic than poorer countries.
   * Countries led by women more successful than those led by men
   * The success in dealing with the pandemic related the proportion of older people living in a country
-  * Democratic countries more successful at dealting with the pandemic than autoritrian ones?
+  * Democratic countries more successful at dealting with the pandemic than autoritrian ones
 
 By using data from countries around the world, namely relating to; wealth, age, the gender of a nation's leader and the strength of democratic institutions as well as statisitcal analysis of these varibles, I am able to further understand the effect these vairbles have on the total deaths per million in a country. This will help me in determining the validity of these hypothesis or if they have no effect on the level of COVID-19 deaths at all (This is known as the null hypothesis).    
 
 
 
 ## Justification:
+
+### Countries led by women more successful than those led by men:
+
+Maybe it is the type of leader that has an effect on COVID-19 deaths in a country? The early success of high profile female world leaders has been studied by academics and widely publicized by prominent media outlets. This leads to the hypothesis, Countries led by women are more successful than those led by men, and if so why? The behavior of male and femle world leaders have been compared, with some studies claimng that female leader are "more risk-averse than men" and are more likely to downplay the crisis. While on the overhand Female leaders such as Jacinda Ardern and Angela Merkle were observed taking stricter measures to stop COVID-19 spreading earlier in the countries they led. 
+
+### Richer countries do better or worse at handling the pandemic than poorer countries:
+
+It is not outlandish to assume that a nation with a wealthier population is likely to have access to better medical resources.    
+
+### The success in dealing with the pandemic related the proportion of older people living in a country:
+
+### Democratic countries more successful at dealting with the pandemic than autoritrian ones:
+
+
+
+
 
 
 
