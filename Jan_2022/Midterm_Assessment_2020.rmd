@@ -33,9 +33,9 @@ head(dataset)
 The Coronavious pandemic has led to social and economic disruption on an unprecidented scale with every country in the world being affected in some way. COVID-19 has dominated business, trade, politics and the media, leading many to question exactly what factors of a nation's governence have lead to fewer COVD-19 deaths.  Some of the most prevelent beleifes sorounding this include: 
   
   * Richer countries do better or worse at handling the pandemic than poorer countries.
-  * Countries led by women more successful than those led by men
-  * The success in dealing with the pandemic related the proportion of older people living in a country
-  * Democratic countries more successful at dealting with the pandemic than autoritrian ones
+  * Countries led by women more successful than those led by men.
+  * The success in dealing with the pandemic related the proportion of older people living in a country.
+  * Democratic countries more successful at dealting with the pandemic than autoritrian ones.
 
 By using data from countries around the world, namely relating to; wealth, age, the gender of a nation's leader and the strength of democratic institutions as well as statisitcal analysis of these varibles, I am able to further understand the effect these vairbles have on the total deaths per million in a country. This will help me in determining the validity of these hypothesis or if they have no effect on the level of COVID-19 deaths at all (This is known as the null hypothesis).    
 
@@ -65,7 +65,7 @@ Effective measures to controls the spread of COIVD-19 may be more difficult or s
 
 ## The Results:
 
-To examine these hypotheses I used  
+To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, these can be found in Table 1. For use in later analysis I also get the measure of central tendency and dispersion for the variables, also listed in Table 1.
 
 ## Table
 
