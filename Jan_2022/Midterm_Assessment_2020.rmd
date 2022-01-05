@@ -125,6 +125,8 @@ gg_vdem <- ggplot(data = dataset_omit, aes(x = vdem_polyarchy)) +
 gg_vdem + geom_histogram()
 ```
 
+The liberal democracy of the countries in the data set range from 0.09 to 0.9 
+
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 5.", echo=FALSE}
 # Aged 65 or Older:
 gg_aged_65_plus <- ggplot(data = dataset_omit, aes(x = aged_65_older)) + 
