@@ -92,6 +92,7 @@ sd(dataset_omit$vdem_polyarchy)
 gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million))
 gg_total_deaths_per_mil + geom_histogram(binwidth = 10)
 
+gg_total_deaths_per_mil(x)
 # GDP Per Capita:
 gg_gdp_per_cap <- ggplot(dataset_omit, aes(x = gdp_per_capita))
 gg_gdp_per_cap + geom_histogram()
@@ -115,8 +116,9 @@ gg_vdem <- ggplot(data = dataset_omit, aes(x = vdem_polyarchy))
 gg_vdem + geom_histogram()
 
 #### RECODES FOR VARIBELS OF INTREST (BINARY)####
+#### RECODES FOR VARIBELS OF INTREST (BINARY)####
 
-# calculate median population density
+# calculate median GDP Per Capita
 med_gdp <- median(dataset_omit$gdp_per_capita)
 
 # create new variable using case_when()
@@ -127,6 +129,27 @@ dataset_omit <- dataset_omit %>% # pipe the dataset
         gdp_per_capita > med_gdp ~ 1,
         gdp_per_capita <= med_gdp ~ 0)))
 
+# calculate median 65 or Older
+med_65_plus <- median(dataset_omit$aged_65_older)
+
+# create new variable using case_when()
+dataset_omit <- dataset_omit %>% # pipe the dataset
+  mutate( # create new variable
+    sixty_five_var = # name the new variable
+      factor(case_when(
+        aged_65_older > med_65_plus ~ 1,
+        aged_65_older <= med_65_plus ~ 0)))
+
+# calculate median vdem Polyarchy
+med_vdem <- median(dataset_omit$vdem_polyarchy)
+
+# create new variable using case_when()
+dataset_omit <- dataset_omit %>% # pipe the dataset
+  mutate( # create new variable
+    vdem_var = # name the new variable
+      factor(case_when(
+        vdem_polyarchy > med_vdem ~ 1,
+        vdem_polyarchy <= med_vdem ~ 0)))
 
 
 #### RELATIONSHP BETWEEN TOTAL COVID 19 DEATHS AND THE RELEVENT VARIABLES ####
@@ -146,3 +169,27 @@ gdp_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, group = gd
 gdp_dist
 
   #### TWO SAMPLE T-TESTS ####
+
+# T-Test: GDP
+
+t.test(vdem_polyarchy ~ vdem_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+
+# T-Test: Aged 65 Plus
+
+t.test(aged_65_older ~ sixty_five_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+
+# T-Test: VDEM Polyarchy
+
+t.test(vdem_polyarchy ~ vdem_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval

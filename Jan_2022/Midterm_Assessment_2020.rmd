@@ -65,7 +65,9 @@ Effective measures to controls the spread of COIVD-19 may be more difficult or s
 
 ## The Results:
 
-To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, these can be found in Table 1. For use in later analysis I also get the measure of central tendency and dispersion for the variables, also listed in Table 1.
+To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, the selected hypotheses can be found in Table 1. Firstly, I calculated the measure of central tendency and dispersion for the variables, for use in later analysis (also listed in Table 1).
+
+Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me get some quick about the variables. these are found in figures 1 to 5.
 
 ## Table
 
@@ -80,6 +82,8 @@ V-Dem Polyarchy                                     Continuous                  
 
 *Table 1. The Name of the Relevant Measure of Central Tendency (MCT) and Measure of Dispersion with their values*
 
+
+
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 1.",  echo=FALSE}
 # Total Deaths Per Million:
 gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million)) +
@@ -87,12 +91,17 @@ gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million
 gg_total_deaths_per_mil + geom_histogram(binwidth = 10)
 ```
 
+From this distribution we can see that there is a group of countries with mostly low total COVID-19 deaths per million with the number of countries decreasing ans the total deaths per million rises. The lower, total deaths range between 0 and 375, another group of countries with deaths between 500 and 750 per million and one country with over 1000 total deaths per million.  
+
+
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 2.", echo=FALSE}
 # GDP Per Capita:
 gg_gdp_per_cap <- ggplot(dataset_omit, aes(x = gdp_per_capita)) +
   ggtitle("Gross Domestic Product (GDP) per capita")
 gg_gdp_per_cap + geom_histogram()
 ```
+
+There Are many more countries with a GDP per Capita below 25,000 Dollars than higher. There are some countries with GDP per capitas 25 and 60,000 Dollars some much wealthier countries with a GDP per capita of around 95,000 dollars. 
 
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 3.", echo=FALSE}
 # Female Head of Government:
@@ -106,6 +115,8 @@ geom_text(size = 2,
 
 gg_female_HoG_deaths + facet_wrap(~ female_HoG)
 ```
+
+The vast majority of heads of government in the world are male, with only 8 out of the 116 countries in the data set having female heads of government.
 
 ```{r, fig.height=8, fig.width=13, fig.cap="\\label{fig:figs}Figure 4.", echo=FALSE}
 # VDEM Polyarchy:
