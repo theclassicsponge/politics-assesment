@@ -13,7 +13,7 @@ output:
 
 
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, warning = FALSE, message = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
 #### INSTALL LIBRARYS: ####
@@ -67,7 +67,9 @@ Effective measures to controls the spread of COIVD-19 may be more difficult or s
 
 To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, the selected hypotheses can be found in Table 1. Firstly, I calculated the measure of central tendency and dispersion for the variables, for use in later analysis (also listed in Table 1).
 
-Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me get some quick about the variables. these are found in figures 1 to 5.
+Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me get some quick about the variables. these are found in figures 1 to 5. 
+
+After that I compared the relevant variables to the total COVID-19 deaths per million with conditional distribution plots (figures 7 to 9). 
 
 ## Table
 
@@ -84,7 +86,7 @@ V-Dem Polyarchy                                     Continuous                  
 
 
 
-```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 1.",  echo=FALSE}
+```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 1.",  echo=FALSE, warnings = F}
 # Total Deaths Per Million:
 gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million)) +
   ggtitle("The Total Number of COVID-19 Related Deaths per Million Inhabitants")
@@ -125,7 +127,7 @@ gg_vdem <- ggplot(data = dataset_omit, aes(x = vdem_polyarchy)) +
 gg_vdem + geom_histogram()
 ```
 
-The liberal democracy of the countries in the data set range from 0.09 to 0.9 
+This Histogram shows the level liberal democracy of the countries in the data set ranging from 0, meaning that a country has no democratic institutions to 1, meaning that the county has the strongest democratic institutions. The countries in this data set range from 0.09 to 0.9. The most common values being found around 0.6. unlike the other histograms, this one is skewed to the right. There are more countries considered to be democratic than not.
 
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 5.", echo=FALSE}
 # Aged 65 or Older:
@@ -133,6 +135,8 @@ gg_aged_65_plus <- ggplot(data = dataset_omit, aes(x = aged_65_older)) +
   ggtitle("Estimated Share of the Population Aged 65 and Over")
 gg_aged_65_plus + geom_histogram()
 ```
+
+The last histogram show the estimated share of a country's population over the age of 65. the share ranges between 2% at the lowest and 23% at the highest. This graph is skewed to the left. The most common percentage of estimated share of the population being between 2% and 3%. There are more countries with lower estimated shares of 65s and over than higher estimated shares. 
 
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 6.", echo=FALSE}
 #### RECODES FOR VARIBELS OF INTREST (BINARY)####
@@ -170,6 +174,18 @@ dataset_omit <- dataset_omit %>% # pipe the dataset
         vdem_polyarchy > med_vdem ~ 1,
         vdem_polyarchy <= med_vdem ~ 0)))
 
+# calculate female head of government
+med_fem <- median(dataset_omit$female_HoG)
+
+# create new variable using case_when()
+dataset_omit <- dataset_omit %>% # pipe the dataset
+  mutate( # create new variable
+    fem_var = # name the new variable
+      factor(case_when(
+        female_HoG > med_fem ~ 1,
+        female_HoG <= med_fem ~ 0)))
+
+
 ```
 #### Richer Countries do better than Poorer countries.
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 7.", echo=FALSE}
@@ -187,13 +203,13 @@ gdp_dist
 
 ```
 
-#### Countries led by women are more successful than those led by men.  
+There is a much wider spread of COVID-19 deaths per million in countries with above median GDP per capita compared to countries below the median. Countries with lower seem to have fewer COVID-19 deaths per million.
 
 #### The success in dealing with the pandemic is related to the proportion of older people living in the country.
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 8.", echo=FALSE}
 # Distribution of Deaths per Million Conditional on median 65 or Older
 
-sixtyfive_dist <- ggplot(data = dataset_omit, aes(aged_65_older, group = sixty_five_var)) + 
+sixtyfive_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, group = sixty_five_var)) + 
   geom_density(aes(colour = sixty_five_var)) +
   labs(x = "Total Deaths Per Million", # clearer x axis label
        y = "Density", # clearer y axis label
@@ -206,10 +222,12 @@ sixtyfive_dist <- ggplot(data = dataset_omit, aes(aged_65_older, group = sixty_f
 sixtyfive_dist
 ```
 
+Their is a wider spread of country's COVID-19 deaths per million with populations over 65 comaped to countries with a smaller estimated share of the population over that age.  
+
 #### Democratic countries are more successful than authoritarian countries.
 
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 9.", echo=FALSE}
-vdem_dist <- ggplot(data = dataset_omit, aes(vdem_polyarchy, group = vdem_var)) + 
+vdem_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, group = vdem_var)) + 
   geom_density(aes(colour = vdem_var)) +
   labs(x = "Total Deaths Per Million", # clearer x axis label
        y = "Density", # clearer y axis label
@@ -221,6 +239,16 @@ vdem_dist <- ggplot(data = dataset_omit, aes(vdem_polyarchy, group = vdem_var)) 
 
 vdem_dist
 ```
+
+Countries below or equal to the median level of liberal democracy have a lower spread of total COVID-19 deaths per million, however most countries above the median also have low COVID-19 deaths per million but have a larger distribution spread.
+
+#### Richer Countries do better than Poorer countries.
+
+#### Countries led by women are more successful than those led by men.  
+
+#### Democratic countries are more successful than authoritarian countries.
+
+#### The success in dealing with the pandemic is related to the proportion of older people living in the country.
 
 
 
@@ -437,5 +465,20 @@ t.test(vdem_polyarchy ~ vdem_var, # formula y ~ x
        alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
        conf = 0.95) # confidence interval
 
+# T-Test: Female HoG
+
+fem_means <- # assign to object
+  dataset_omit %>% # pipe dataset
+  group_by(female_HoG) %>% # group by whether in London
+  summarise(mean = mean(total_deaths_per_million), # get mean of BrexitVote for each group
+            n = n()) # also get number of observations in each group
+
+fem_means
+
+t.test(total_deaths_per_million ~ female_HoG, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
 ```
 
