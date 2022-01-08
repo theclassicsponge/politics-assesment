@@ -69,7 +69,10 @@ To actually prove that these hypotheses do or don't effect COVID-19 deaths in co
 
 Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me get some quick about the variables. these are found in figures 1 to 5. 
 
-After that I compared the relevant variables to the total COVID-19 deaths per million with conditional distribution plots (figures 7 to 9). 
+After that I compared the relevant variables to the total COVID-19 deaths per million with conditional distribution plots (figures 7 to 9).
+
+Lastly, using the means I worked out in the table. I will conduct two sample T-tests on the variables to test if the differences in the effect of the variables identified in the plots are statistically significant. A two sample T-test is a type of hypothesis test used to compare whether the difference between the means of two groups is statistically significant or if it due just to random chance. 
+P-values and T-values are important to understanding how to interpret T-tests. The P-value tells us how likely it is to get a result like the one we get if the null hypothesis is true. A p-value of below 0.05 would be statistically significant. This means we reject the null hypothesis if it is below that number.
 
 ## Table
 
@@ -118,7 +121,7 @@ geom_text(size = 2,
 gg_female_HoG_deaths + facet_wrap(~ female_HoG)
 ```
 
-The vast majority of heads of government in the world are male, with only 8 out of the 116 countries in the data set having female heads of government.
+The vast majority of heads of government in the world are male, with only 9 out of the 116 countries in the data set having female heads of government.
 
 ```{r, fig.height=8, fig.width=13, fig.cap="\\label{fig:figs}Figure 4.", echo=FALSE}
 # VDEM Polyarchy:
@@ -222,7 +225,7 @@ sixtyfive_dist <- ggplot(data = dataset_omit, aes(total_deaths_per_million, grou
 sixtyfive_dist
 ```
 
-Their is a wider spread of country's COVID-19 deaths per million with populations over 65 comaped to countries with a smaller estimated share of the population over that age.  
+Their is a wider spread of country's COVID-19 deaths per million with populations over 65 comapared to countries with a smaller estimated share of the population over that age.  
 
 #### Democratic countries are more successful than authoritarian countries.
 
@@ -242,15 +245,87 @@ vdem_dist
 
 Countries below or equal to the median level of liberal democracy have a lower spread of total COVID-19 deaths per million, however most countries above the median also have low COVID-19 deaths per million but have a larger distribution spread.
 
+# TWO SAMPLE T-TESTS 
+  
+
+
 #### Richer Countries do better than Poorer countries.
 
-#### Countries led by women are more successful than those led by men.  
+# T-Test: GDP
 
-#### Democratic countries are more successful than authoritarian countries.
+```{r, echo=FALSE}
+
+t.test(total_deaths_per_million ~ vdem_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+
+```
+
+The null hypothesis is that countries with a GDP per capita higher than the average have a lower total COVID-19 deaths per million than countries with a lower GDP per capita. 
+
+From the result of the T-test I can observe that the p-value of 0.0013, below the 0.05 threshold. The average total deaths per million of countries with a GDP per capita below the average was 77.27 and the countries above the average GDP was 203.53. I can reject the null hypothesis. Richer countries on average do not do better than poorer countries.
 
 #### The success in dealing with the pandemic is related to the proportion of older people living in the country.
 
 
+# T-Test: Aged 65 Plus
+
+```{r, echo=FALSE}
+
+t.test(total_deaths_per_million ~ sixty_five_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+
+```
+
+The null hypothesis is that countries with an population over 65 higher than average have lower total COVID-19 deaths per million than countries with a lower population ages.
+
+From the result of the T-test I can observe that the p-value is 3.509e-07 (0.0000003509), below the 0.05 threshold. The average total deaths per million of countries with a  below the average was 42.66 and the countries above the average population over 65 was 238.14. I can reject the null hypothesis. The success in dealing with the pandemic is not related to the proportion of older people living in the country.
+
+#### Democratic countries are more successful than authoritarian countries.
+
+# T-Test: VDEM Polyarchy
+
+```{r, echo=FALSE}
+
+t.test(total_deaths_per_million ~ vdem_var, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+```
+
+The null hypothesis is that countries with a level of liberal democracy higher than the average, have a total COVID-19 deaths per million lower than countries with a lower level of liberal democracy. 
+
+From the result of the T-test I can observe that the p-value is 0.00113, below the 0.05 threshold. The average total deaths per million of counties with a below average level of liberal democracy  was 77.27 and the countries with an above average level of liberal democracy. I can reject the null hypothesis. Democratic countires are not more successful than authoritarian countries.
+
+#### Countries led by women are more successful than those led by men.  
+
+# T-Test: Female HoG
+
+```{r, echo=FALSE}
+
+fem_means <- # assign to object
+  dataset_omit %>% # pipe dataset
+  group_by(female_HoG) %>% # group by whether in London
+  summarise(mean = mean(total_deaths_per_million), # get mean of BrexitVote for each group
+            n = n()) # also get number of observations in each group
+
+fem_means
+
+t.test(total_deaths_per_million ~ female_HoG, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
+```
+
+
+The null hypothesis is that countries with a female head of government have lower total deaths per million than countries with a male head of government. The p value is 0.7388, above the 0.05 threshold. This means that the distribution is not statistically significant and I cannot reject the null hypothesis. While countries with a female head of government do have a lower total deaths per million, there are only 9 female leaders compared to 116 male heads of government.
 
 ## Conclusion:
 
@@ -469,8 +544,8 @@ t.test(vdem_polyarchy ~ vdem_var, # formula y ~ x
 
 fem_means <- # assign to object
   dataset_omit %>% # pipe dataset
-  group_by(female_HoG) %>% # group by whether in London
-  summarise(mean = mean(total_deaths_per_million), # get mean of BrexitVote for each group
+  group_by(female_HoG) %>% # group by whether in there is a female head of government
+  summarise(mean = mean(total_deaths_per_million), # get mean of total_deaths_per_million for each group
             n = n()) # also get number of observations in each group
 
 fem_means

@@ -193,3 +193,19 @@ t.test(vdem_polyarchy ~ vdem_var, # formula y ~ x
        mu = 0, # difference under the null hypothesis
        alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
        conf = 0.95) # confidence interval
+
+# T-Test: Female HoG
+
+fem_means <- # assign to object
+  dataset_omit %>% # pipe dataset
+  group_by(female_HoG) %>% # group by whether in London
+  summarise(mean = mean(total_deaths_per_million), # get mean of BrexitVote for each group
+            n = n()) # also get number of observations in each group
+
+fem_means
+
+t.test(total_deaths_per_million ~ female_HoG, # formula y ~ x
+       data = dataset_omit, # dataset where the variables are found
+       mu = 0, # difference under the null hypothesis
+       alt = "two.sided",  # two sided test (difference in means could be smaller or larger than 0)
+       conf = 0.95) # confidence interval
