@@ -30,14 +30,14 @@ head(dataset)
 
 ## Introduction
 
-The Coronavious pandemic has led to social and economic disruption on an unprecidented scale with every country in the world being affected in some way. COVID-19 has dominated business, trade, politics and the media, leading many to question exactly what factors of a nation's governence have lead to fewer COVD-19 deaths.  Some of the most prevelent beleifes sorounding this include: 
+The Coronavirus pandemic has led to social and economic disruption on an unprecidented scale with every country in the world being affected in some way. COVID-19's effect has dominated business, trade, politics and the media, leading many to question exactly what factors of a nation's governance could lead to fewer COVD-19 deaths. Some of the most prevalent beleifes surrounding this include: 
   
   * Richer countries do better or worse at handling the pandemic than poorer countries.
   * Countries led by women more successful than those led by men.
   * The success in dealing with the pandemic related the proportion of older people living in a country.
   * Democratic countries more successful at dealting with the pandemic than autoritrian ones.
 
-By using data from countries around the world, namely relating to; wealth, age, the gender of a nation's leader and the strength of democratic institutions as well as statisitcal analysis of these varibles, I am able to further understand the effect these vairbles have on the total deaths per million in a country. This will help me in determining the validity of these hypothesis or if they have no effect on the level of COVID-19 deaths at all (This is known as the null hypothesis).    
+By using data from countries around the world, namely relating to; wealth, age, the gender of a nation's leader and the strength of democratic institutions as well as statistical analysis of these variables, I am able to further understand the effect these variables have on the total deaths per million in a country. This will help me in determining the validity of these hypothesis or if they have no effect on the level of COVID-19 deaths at all.    
 
 
 
@@ -45,12 +45,12 @@ By using data from countries around the world, namely relating to; wealth, age, 
 
 ### Countries led by women more successful than those led by men:
 
-Maybe it is the type of leader that has an effect on COVID-19 deaths in a country? The early success of high profile female world leaders has been studied by academics and widely publicized by prominent media outlets. This leads to the hypothesis, Countries led by women are more successful than those led by men, and if so why? The behavior of male and female world leaders have been compared, with some studies claiming that female leader are "more risk-averse than men" and are more likely to downplay the crisis. While on the overhand Female leaders such as Jacinda Ardern and Angela Merkle were observed taking stricter measures to stop COVID-19 spreading earlier in the countries they led. 
+Maybe it is the type of leader that has an effect on COVID-19 deaths in a country? The early success of high profile female world leaders has been studied by academics and widely publicized by prominent media outlets. This leads to the hypothesis, Countries led by women are more successful than those led by men, and if so why? The behavior of male and female world leaders have been compared, with some studies claiming that female leader are "more risk-averse than men" and that male leaders are more likely to downplay the crisis. While on the overhand Female leaders such as Jacinda Ardern and Angela Merkle were observed taking stricter measures to stop COVID-19 spreading earlier in the countries they led. 
 
 ### Richer countries do better or worse at handling the pandemic than poorer countries:
 
-It is not outlandish to assume that a nation with a wealthier population is likely to have access to better medical resources. The United Kingdom or Norway for example have high GDP per capitas, strong service economies and and sizable government infrastructure to plan for and potentially mitigate the effects of a pandemic in it's population.
-These factors should also mean that measure put in place by a government such as lockdowns and working from home will have less of a financial impact on the population compared to countries which do not have robust medical and telecommunications infrastructure as well as having economies that rely on manufacturing or agriculture.   
+It is not outlandish to assume that a nation with a wealthier population is likely to have access to better medical resources. The United Kingdom or Norway for example have high GDP per capitas, strong service economies and sizable government infrastructure to plan for and potentially mitigate the effects of a pandemic in it's population.
+These factors should also mean that measures put in place by a government such as lockdowns and working from home will have less of a financial impact on the population compared to countries which do not have robust medical and telecommunications infrastructure as well as having economies that rely on manufacturing or agriculture.   
 
 ### The success in dealing with the pandemic related the proportion of older people living in a country:
 
@@ -58,25 +58,21 @@ Pandemics often have higher cases in the young but have a higher mortality rate 
 
 ### Democratic countries more successful at dealting with the pandemic than autoritrian ones:
 
-Effective measures to controls the spread of COIVD-19 may be more difficult or slow  to implement in liberal, Democratic political regimes. Measures such as travel bans and the limiting of social gatherings may be seen as autocratic by some members of the public and politicians alike. On the other hand, actual authoritarian regimes "may suffer from a lack of transparency and over-stringent responses." Examples of such responses include media censorship and the falsification of data to control the population as well as the image of the country to the rest of the world. Such issues my cause distrust for a less transparent government's COVID-19 policies and cause more deaths.  
-
-
+Effective measures to controls the spread of COIVD-19 may be more difficult or slow  to implement in liberal, democratic political regimes. Measures such as travel bans and the limiting of social gatherings may be seen as autocratic by some members of the public and politicians alike. On the other hand, actual authoritarian regimes "may suffer from a lack of transparency and over-stringent responses." Examples of such responses include media censorship and the falsification of data to control the population as well as the image of the country to the rest of the world. Such issues my cause distrust for a less transparent government's COVID-19 policies and cause more deaths.  
 
 
 ## The Results:
 
-To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, the selected hypotheses can be found in Table 1. Firstly, I calculated the measure of central tendency and dispersion for the variables, for use in later analysis (also listed in Table 1).
+To actually prove that these hypotheses do or don't effect COVID-19 deaths in countries I first began by examining the variables most relevant to each hypothesis individually, the selected hypotheses can be found in Table 1. Firstly, I calculated the measure of central tendency and dispersion for the variables(also listed in Table 1).
 
-Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me get some quick about the variables. these are found in figures 1 to 5. 
+Next, An important step to analyzing the data is to understand how the relevant variables are distributed. Visualizing distribution with plots helped me quickly understand the variables. these are found in figures 1 to 5. 
 
 After that I compared the relevant variables to the total COVID-19 deaths per million with conditional distribution plots (figures 7 to 9).
 
-Lastly, using the means I worked out in the table. I will conduct two sample T-tests on the variables to test if the differences in the effect of the variables identified in the plots are statistically significant. A two sample T-test is a type of hypothesis test used to compare whether the difference between the means of two groups is statistically significant or if it due just to random chance. 
+Lastly, using the means I worked out in the table. I conducted two sample T-tests on the variables to test if the differences in the effect of the variables identified in the plots are statistically significant. A two sample T-test is a type of hypothesis test used to compare whether the difference between the means of two groups is statistically significant or if it due just to random chance. 
 P-values and T-values are important to understanding how to interpret T-tests. The P-value tells us how likely it is to get a result like the one we get if the null hypothesis is true. A p-value of below 0.05 would be statistically significant. This means we reject the null hypothesis if it is below that number.
 
 ## Table
-
-Understanding the 
 
 Variable                                            Name of the Relevant MCT    Value of the MCT                    Name of the Relevant MD                   Value of the MD 
 ---------                                           -------------------------   -----------------                   ------------------------                  ----------------
@@ -96,7 +92,7 @@ gg_total_deaths_per_mil <- ggplot(dataset_omit, aes(x = total_deaths_per_million
 gg_total_deaths_per_mil + geom_histogram(binwidth = 10)
 ```
 
-From this distribution we can see that there is a group of countries with mostly low total COVID-19 deaths per million with the number of countries decreasing ans the total deaths per million rises. The lower, total deaths range between 0 and 375, another group of countries with deaths between 500 and 750 per million and one country with over 1000 total deaths per million.  
+Figure 1 shows the total deaths per million of the countries in the dataset. the histogram is right skewed with there being more countries with lower total deaths per million. There is a cluster of countries with total deaths per million ranging between 500 and 750. There is an outlier of one country with total deaths per million over 1000, this is Peru.
 
 
 ```{r, fig.height=8, fig.width=10, fig.cap="\\label{fig:figs}Figure 2.", echo=FALSE}
